@@ -1,12 +1,11 @@
 package org.example.Model;
 
-import java.text.NumberFormat;
 import java.util.Objects;
 
 public class Product {
     public long id;
     public String productName;
-    public String productSeller;
+    public String sellerName;
     public double price = Double.parseDouble(".01");
 
     public long getId() {
@@ -19,9 +18,9 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productName, String productSeller, double price) {
+    public Product(String productName, String sellerName, double price) {
         this.productName = productName;
-        this.productSeller = productSeller;
+        this.sellerName = sellerName;
         this.price = price;
     }
 
@@ -42,12 +41,12 @@ public class Product {
     }
 
 
-    public String getProductSeller() {
-        return productSeller;
+    public String getSellerName() {
+        return sellerName;
     }
 
-    public void setProductSeller(String productSeller) {
-        this.productSeller = productSeller;
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
     }
 
     @Override
@@ -55,19 +54,19 @@ public class Product {
         if (this == o) return true;
         if (!(o instanceof Product)) return false;
         Product product = (Product) o;
-        return getId() == product.getId() && Double.compare(getPrice(), product.getPrice()) == 0 && Objects.equals(getProductName(), product.getProductName()) && Objects.equals(getProductSeller(), product.getProductSeller());
+        return getId() == product.getId() && Double.compare(getPrice(), product.getPrice()) == 0 && Objects.equals(getProductName(), product.getProductName()) && Objects.equals(getSellerName(), product.getSellerName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getProductName(), getProductSeller(), getPrice());
+        return Objects.hash(getId(), getProductName(), getSellerName(), getPrice());
     }
 
     @Override
     public String toString() {
         return "Product{" +
                 "productName='" + productName + '\'' +
-                ", productSeller='" + productSeller + '\'' +
+                ", sellerName='" + sellerName + '\'' +
                 ", price=" + price +
                 '}';
     }
