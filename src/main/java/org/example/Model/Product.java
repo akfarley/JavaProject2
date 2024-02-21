@@ -3,17 +3,17 @@ package org.example.Model;
 import java.util.Objects;
 
 public class Product {
-    public long id;
+    public long productId;
     public String productName;
     public String sellerName;
     public double price = Double.parseDouble(".01");
 
-    public long getId() {
-        return id;
+    public long getProductId() {
+        return productId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setproductId(long productId) {
+        this.productId = productId;
     }
     public Product() {
     }
@@ -54,12 +54,12 @@ public class Product {
         if (this == o) return true;
         if (!(o instanceof Product)) return false;
         Product product = (Product) o;
-        return getId() == product.getId() && Double.compare(getPrice(), product.getPrice()) == 0 && Objects.equals(getProductName(), product.getProductName()) && Objects.equals(getSellerName(), product.getSellerName());
+        return getProductId() == product.getProductId() && Double.compare(getPrice(), product.getPrice()) == 0 && Objects.equals(getProductName(), product.getProductName()) && Objects.equals(getSellerName(), product.getSellerName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getProductName(), getSellerName(), getPrice());
+        return Objects.hash(getProductId(), getProductName(), getSellerName(), getPrice());
     }
 
     @Override
