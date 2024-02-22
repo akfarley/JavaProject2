@@ -6,15 +6,14 @@ DROP TABLE PRODUCT if exists;
 DROP TABLE SELLER if exists;
 
 CREATE TABLE SELLER (
-seller_id int,
-seller_name varchar(255),
-PRIMARY KEY (seller_id)
+seller_id BIGINT PRIMARY KEY,
+seller_name varchar(255)
 );
 
 CREATE TABLE PRODUCT (
-product_id int PRIMARY KEY AUTO_INCREMENT,
-product_name varchar(255),
-seller_name varchar(255),
+product_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+product_name varchar(255) NOT NULL,
+seller_id BIGINT NOT NULL references SELLER(seller_id),
 price decimal
 );
 
@@ -23,8 +22,8 @@ VALUES
 (1, 'Chuck'),
 (2, 'Mary'),
 (3, 'Susan');
-INSERT INTO PRODUCT (product_name, seller_name, price)
+INSERT INTO PRODUCT (product_id, product_name, seller_id, price)
 VALUES
-('widget', 'Chuck', 1.99),
-('bobber', 'Susan', 2.50),
-('daisy', 'Mary', 5.00);
+(1, 'widget', 1, 1.99),
+(2, 'bobber', 2, 2.50),
+(3, 'keychain', 3, 5.00);

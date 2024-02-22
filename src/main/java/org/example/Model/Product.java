@@ -5,31 +5,18 @@ import java.util.Objects;
 public class Product {
     public long productId;
     public String productName;
-    public String sellerName;
+    public int sellerId;
     public double price = Double.parseDouble(".01");
+
+    public Product(){
+    }
 
     public long getProductId() {
         return productId;
     }
 
-    public void setproductId(long productId) {
+    public void setProductId(long productId) {
         this.productId = productId;
-    }
-    public Product() {
-    }
-
-    public Product(String productName, String sellerName, double price) {
-        this.productName = productName;
-        this.sellerName = sellerName;
-        this.price = price;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public String getProductName() {
@@ -40,35 +27,50 @@ public class Product {
         this.productName = productName;
     }
 
-
-    public String getSellerName() {
-        return sellerName;
+    public int getSellerId() {
+        return sellerId;
     }
 
-    public void setSellerName(String sellerName) {
-        this.sellerName = sellerName;
+    public void setSellerId(int sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Product)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return getProductId() == product.getProductId() && Double.compare(getPrice(), product.getPrice()) == 0 && Objects.equals(getProductName(), product.getProductName()) && Objects.equals(getSellerName(), product.getSellerName());
+        return productId == product.productId && sellerId == product.sellerId && Double.compare(price, product.price) == 0 && Objects.equals(productName, product.productName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getProductId(), getProductName(), getSellerName(), getPrice());
+        return Objects.hash(productId, productName, sellerId, price);
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "productName='" + productName + '\'' +
-                ", sellerName='" + sellerName + '\'' +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", sellerId=" + sellerId +
                 ", price=" + price +
                 '}';
+    }
+
+    public Product(String productName, int sellerId, double price) {
+        this.productId = productId;
+        this.productName = productName;
+        this.sellerId = sellerId;
+        this.price = price;
     }
 }
 

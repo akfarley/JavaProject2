@@ -29,6 +29,7 @@ public class SellerDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error while getting seller list: " + e.getMessage());
         }
         return sellerResults;
     }
@@ -42,21 +43,24 @@ public class SellerDAO {
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error while inserting seller: " + e.getMessage());
         }
 
     }
+
     public Seller getSellerById(int sellerId) {
-        try {
-            PreparedStatement ps = conn.prepareStatement("select * from seller where seller_id = ?");
+        try
+                (PreparedStatement ps = conn.prepareStatement("select * from seller where seller_id = ?")) {
             ps.setInt(1, sellerId);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                sellerId = rs.getInt("seller_id");
-                String sellerName = rs.getString("seller_name");
-                Seller seller = new Seller(sellerId, sellerName);
-                return seller;
-            } else {
-                return null;
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    sellerId = rs.getInt("seller_id");
+                    String sellerName = rs.getString("seller_name");
+                    Seller seller = new Seller(sellerId, sellerName);
+                    return seller;
+                } else {
+                    return null;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,22 +68,10 @@ public class SellerDAO {
         return null;
     }
     public Seller getSellerByName(String sellerName) {
-        try {
-            PreparedStatement ps = conn.prepareStatement("select * from seller where seller_name = ?");
-            ps.setString(1, sellerName);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                //sellerId = rs.getInt("seller_id");
-                sellerName = rs.getString("seller_name");
-                Seller seller = new Seller();
-                return seller;
-            }else{
-                return null;
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-    return null;
+        return getAllSeller().stream()
+                .filter(seller -> seller.getSellerName().equals(sellerName))
+                .findFirst()
+                .orElse(null);
     }
 
 }

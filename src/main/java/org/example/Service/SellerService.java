@@ -21,14 +21,21 @@ public class SellerService {
         return sellerDAO.getAllSeller();
     }
 
+
     public void saveSeller(Seller seller) throws SellerException {
+        if (seller == null) {
+            throw new SellerException("Seller cannot be null");
+        }
+        if (seller.getSellerName().isBlank()) {
+            throw new SellerException("Seller name cannot be blank.");
+        }
         String sellerName = seller.getSellerName();
         Main.log.info("Attempting to add seller: " + seller);
-        if (sellerDAO.getSellerByName(sellerName) == null) {
-            Main.log.warn("Seller name is missing");
-            throw new SellerException("Seller name cannot be blank");
+        if (sellerDAO.getSellerByName(sellerName) != null) {
+            Main.log.warn("Seller with name " + sellerName + " already exists");
+        } else {
+            sellerDAO.insertSeller(seller);
         }
-        sellerDAO.insertSeller(seller);
 
     }
 

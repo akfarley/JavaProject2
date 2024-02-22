@@ -19,6 +19,9 @@ public class ProductService {
     public void saveProduct(Product product) throws ProductException {
         long id = product.getProductId();
         if (productDAO.getProductById(product.productId) == null) {
+            if (product.getPrice() == 0) {
+                throw new ProductException("Product price cannot be 0.00");
+            }
             productDAO.insertProduct(product);
         } else {
             throw new ProductException("product with id " + product.productId + " already exists");
@@ -26,17 +29,18 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {
+        Main.log.warn("Retrieving Product List" + productDAO.getAllProducts());
         return productDAO.getAllProducts();
     }
+
     public Product getProductById(long productId) throws ProductException {
         Main.log.info("Attempting to get a product: " + productId);
         for (Product product : productDAO.getAllProducts()) {
-            if (productDAO.getProductById(product.productId) == null) {
-                throw new ProductException("Product cannot be found: " + product.productId);
+            if (product.productId == productId) {
+                return product;
             }
-            return product;
         }
-        return null;
+        throw new ProductException("Product cannot be found: " + productId);
     }
     public Product removeProductByID(long productId) throws ProductException {
         Main.log.info("Attempting to delete a product" + productId);

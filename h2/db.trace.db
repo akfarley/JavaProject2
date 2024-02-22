@@ -1224,3 +1224,208 @@ price decima [90057-214]
 	at org.example.Util.ConnectionSingleton.resetTestDatabase(ConnectionSingleton.java:63)
 	at org.example.Util.ConnectionSingleton.getConnection(ConnectionSingleton.java:44)
 	at org.example.Main.main(Main.java:22)
+2024-02-22 11:43:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column count does not match; SQL statement:
+INSERT INTO PRODUCT (product_id, product_name, seller_name, price)
+VALUES
+('widget', 'Chuck', 1.99),
+('bobber', 'Susan', 2.50),
+('daisy', 'Mary', 5.00) [21002-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:575)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:237)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.tools.RunScript.execute(RunScript.java:169)
+	at org.example.Util.ConnectionSingleton.resetTestDatabase(ConnectionSingleton.java:63)
+	at org.example.Util.ConnectionSingleton.getConnection(ConnectionSingleton.java:44)
+	at org.example.Main.main(Main.java:20)
+2024-02-22 11:45:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column count does not match; SQL statement:
+INSERT INTO PRODUCT (product_id, product_name, seller_name, price)
+VALUES
+('widget', 'Chuck', 1.99),
+('bobber', 'Susan', 2.50),
+('daisy', 'Mary', 5.00) [21002-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:575)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:237)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.tools.RunScript.execute(RunScript.java:169)
+	at org.example.Util.ConnectionSingleton.resetTestDatabase(ConnectionSingleton.java:63)
+	at org.example.Util.ConnectionSingleton.getConnection(ConnectionSingleton.java:44)
+	at org.example.Main.main(Main.java:20)
+2024-02-22 11:47:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column count does not match; SQL statement:
+INSERT INTO PRODUCT (product_id, product_name, seller_name, price)
+VALUES
+('widget', 'Chuck', 1.99),
+('bobber', 'Susan', 2.50),
+('daisy', 'Mary', 5.00) [21002-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:575)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:237)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.tools.RunScript.execute(RunScript.java:169)
+	at org.example.Util.ConnectionSingleton.resetTestDatabase(ConnectionSingleton.java:63)
+	at org.example.Util.ConnectionSingleton.getConnection(ConnectionSingleton.java:44)
+	at org.example.Main.main(Main.java:20)
+2024-02-22 11:59:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a\000d\000aCREATE TABLE PRODUCT (\000d\000aproduct_id int AUTO_INCREMENT,\000d\000aproduct_name varchar(255),\000d\000aseller_name varchar(255),\000d\000aprice decimal,\000d\000aPRIMARY KEY (product_id),\000d\000a[*]DEFAULT 1\000d\000a)"; expected "identifier"; SQL statement:
+
+
+CREATE TABLE PRODUCT (
+product_id int AUTO_INCREMENT,
+product_name varchar(255),
+seller_name varchar(255),
+price decimal,
+PRIMARY KEY (product_id),
+DEFAULT 1
+) [42001-214]
+2024-02-22 12:03:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Unknown data type: "SEQUENCE"; SQL statement:
+
+
+CREATE TABLE PRODUCT (
+CREATE SEQUENCE product_id int AUTO_INCREMENT,
+product_id int AUTO_INCREMENT,
+product_name varchar(255),
+seller_name varchar(255),
+price decimal,
+PRIMARY KEY (product_id),
+DEFAULT 1
+) [50004-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.Parser.readIfDataType1(Parser.java:6249)
+	at org.h2.command.Parser.readIfDataType(Parser.java:6087)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:6069)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:5948)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:9331)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:9271)
+	at org.h2.command.Parser.parseCreate(Parser.java:6784)
+	at org.h2.command.Parser.parsePrepared(Parser.java:763)
+	at org.h2.command.Parser.parse(Parser.java:689)
+	at org.h2.command.Parser.parse(Parser.java:661)
+	at org.h2.command.Parser.prepareCommand(Parser.java:569)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:237)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.tools.RunScript.execute(RunScript.java:169)
+	at org.example.Util.ConnectionSingleton.resetTestDatabase(ConnectionSingleton.java:63)
+	at org.example.Util.ConnectionSingleton.getConnection(ConnectionSingleton.java:44)
+	at org.example.Main.main(Main.java:20)
+2024-02-22 12:04:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Unknown data type: "SEQUENCE"; SQL statement:
+
+
+CREATE TABLE PRODUCT (
+CREATE SEQUENCE product_id int AUTO_INCREMENT,
+product_id int AUTO_INCREMENT,
+product_name varchar(255),
+seller_name varchar(255),
+price decimal,
+PRIMARY KEY (product_id)
+) [50004-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.Parser.readIfDataType1(Parser.java:6249)
+	at org.h2.command.Parser.readIfDataType(Parser.java:6087)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:6069)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:5948)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:9331)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:9271)
+	at org.h2.command.Parser.parseCreate(Parser.java:6784)
+	at org.h2.command.Parser.parsePrepared(Parser.java:763)
+	at org.h2.command.Parser.parse(Parser.java:689)
+	at org.h2.command.Parser.parse(Parser.java:661)
+	at org.h2.command.Parser.prepareCommand(Parser.java:569)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:237)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.tools.RunScript.execute(RunScript.java:169)
+	at org.example.Util.ConnectionSingleton.resetTestDatabase(ConnectionSingleton.java:63)
+	at org.example.Util.ConnectionSingleton.getConnection(ConnectionSingleton.java:44)
+	at org.example.Main.main(Main.java:20)
+2024-02-22 12:18:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column count does not match; SQL statement:
+INSERT INTO PRODUCT (product_id, product_name, seller_name, price)
+VALUES
+('widget', 'Chuck', 1.99),
+('bobber', 'Susan', 2.50),
+('daisy', 'Mary', 5.00) [21002-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:575)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:237)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.tools.RunScript.execute(RunScript.java:169)
+	at org.example.Util.ConnectionSingleton.resetTestDatabase(ConnectionSingleton.java:63)
+	at org.example.Util.ConnectionSingleton.getConnection(ConnectionSingleton.java:44)
+	at org.example.Main.main(Main.java:20)
+2024-02-22 13:26:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column count does not match; SQL statement:
+INSERT INTO PRODUCT (product_id, product_name, seller_id, price)
+VALUES
+('widget', 1, 1.99),
+('bobber', 2, 2.50),
+('keychain', 3, 5.00) [21002-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:575)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:237)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.tools.RunScript.execute(RunScript.java:169)
+	at org.example.Util.ConnectionSingleton.resetTestDatabase(ConnectionSingleton.java:63)
+	at org.example.Util.ConnectionSingleton.getConnection(ConnectionSingleton.java:44)
+	at org.example.Main.main(Main.java:20)
