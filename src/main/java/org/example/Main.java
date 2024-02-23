@@ -20,25 +20,12 @@ public class Main {
         Connection conn = ConnectionSingleton.getConnection();
         SellerDAO sellerDAO = new SellerDAO(conn);
         ProductDAO productDAO = new ProductDAO(conn);
-
         SellerService sellerService = new SellerService(sellerDAO);
         ProductService productService = new ProductService(productDAO);
         ProductController productController = new ProductController(sellerService, productService);
 
-//        Product product1 = new Product("widget", "Chuck", 1.00);
-//        Product product2 = new Product("bobber", "Jack",2.00);
-//
-//        productDAO.insertProduct(product1);
-//        productDAO.insertProduct(product2);
-//
-//        List<Product> productList = productDAO.getAllProducts();
-//        System.out.println(productList);
-//
-//        SellerService sellerService = new SellerService();
-//        ProductService productService = new ProductService(sellerService);
-//        ProductController productController = new ProductController(sellerService, productService);
-
         Javalin api = productController.getAPI();
+
         api.start(9018);
 
     }

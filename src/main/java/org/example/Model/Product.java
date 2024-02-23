@@ -3,19 +3,26 @@ package org.example.Model;
 import java.util.Objects;
 
 public class Product {
-    public long productId;
+    public int productId;
     public String productName;
     public int sellerId;
     public double price = Double.parseDouble(".01");
 
-    public Product(){
+    public Product() {
     }
 
-    public long getProductId() {
+    public Product(int productId, String productName, int sellerId, double price) {
+        this.productId = productId;
+        this.productName = productName;
+        this.sellerId = sellerId;
+        this.price = price;
+    }
+
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
@@ -31,8 +38,9 @@ public class Product {
         return sellerId;
     }
 
-    public void setSellerId(int sellerId) {
+    public int setSellerId(int sellerId) {
         this.sellerId = sellerId;
+        return sellerId;
     }
 
     public double getPrice() {
@@ -46,14 +54,14 @@ public class Product {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Product)) return false;
         Product product = (Product) o;
-        return productId == product.productId && sellerId == product.sellerId && Double.compare(price, product.price) == 0 && Objects.equals(productName, product.productName);
+        return getProductId() == product.getProductId() && getSellerId() == product.getSellerId() && Double.compare(getPrice(), product.getPrice()) == 0 && Objects.equals(getProductName(), product.getProductName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, productName, sellerId, price);
+        return Objects.hash(getProductId(), getProductName(), getSellerId(), getPrice());
     }
 
     @Override
@@ -65,12 +73,4 @@ public class Product {
                 ", price=" + price +
                 '}';
     }
-
-    public Product(String productName, int sellerId, double price) {
-        this.productId = productId;
-        this.productName = productName;
-        this.sellerId = sellerId;
-        this.price = price;
-    }
 }
-

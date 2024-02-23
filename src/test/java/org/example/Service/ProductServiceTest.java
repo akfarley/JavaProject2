@@ -12,6 +12,8 @@ import org.junit.*;
 import java.sql.Connection;
 import java.util.List;
 
+import static org.example.Util.ConnectionSingleton.resetTestDatabase;
+
 public class ProductServiceTest {
     ProductService productService;
     SellerService sellerService;
@@ -26,6 +28,7 @@ public class ProductServiceTest {
         productDAO = new ProductDAO(conn);
         sellerService = new SellerService(sellerDAO);
         productService = new ProductService(productDAO);
+        resetTestDatabase();
     }
 /**
 Updated the test case to check if productList is NOT empty at start; DB starts with 3 products and sellers.
@@ -33,7 +36,7 @@ Updated the test case to check if productList is NOT empty at start; DB starts w
     @Test
     public void productServiceNotEmptyAtStart() {
         List<Product> productList = productService.getAllProducts();
-        Assert.assertFalse(productList.isEmpty());
+        Assert.assertEquals(3, productList.size());
     }
 
     /**
@@ -42,7 +45,7 @@ Updated the test case to check if productList is NOT empty at start; DB starts w
     @Test
     public void sellerServiceNotEmptyAtStart() {
         List<Seller> sellerList = sellerService.getAllSeller();
-        Assert.assertFalse(sellerList.isEmpty());
+        Assert.assertEquals(3, sellerList.size());
     }
 
     /**
@@ -57,7 +60,7 @@ Updated the test case to check if productList is NOT empty at start; DB starts w
         sellerService.saveSeller(new Seller(8,"Greg"));
 
         List<Seller> sellerList = sellerService.getAllSeller();
-        Assert.assertEquals(8, sellerList.size());
+        Assert.assertEquals(6, sellerList.size());
         //Added check to make sure the seller name is not blank
         Seller seller = new Seller();
         seller.setSellerName("");
@@ -80,11 +83,11 @@ Updated the test case to check if productList is NOT empty at start; DB starts w
             Assert.assertTrue(true);
         }
         List<Seller> sellerList = sellerService.getAllSeller();
-        Assert.assertFalse(sellerList.isEmpty());
+        Assert.assertEquals(3, sellerList.size());
     }
 
     /**
-     * Attempt to add a duplicate seller
+     * Attempt to add a duplicate seller, verify it is not added - check size of seller list.
      */
     @Test
     public void addDupSellerTest() {
@@ -95,7 +98,7 @@ Updated the test case to check if productList is NOT empty at start; DB starts w
         }
 
         List<Seller> sellerList = sellerService.getAllSeller();
-        Assert.assertFalse(sellerList.isEmpty());
+        Assert.assertEquals(3, sellerList.size());
     }
 
 
@@ -106,12 +109,12 @@ Updated the test case to check if productList is NOT empty at start; DB starts w
     public void addProductTest() throws SellerException {
         Seller seller = new Seller();
         seller.setSellerName("Patrick");
-        seller.setSellerId(5);
+        seller.setSellerId(4);
         sellerService.saveSeller(seller);
 
         Product product = new Product();
         product.setProductName("widget");
-        product.setSellerId("Patrick");
+        product.setSellerId(4);
         product.setPrice(1.99);
         try {
             productService.saveProduct(product);
@@ -120,10 +123,10 @@ Updated the test case to check if productList is NOT empty at start; DB starts w
             Assert.fail("exception should not be thrown");
         }
         List<Product> productList = productService.getAllProducts();
-        Assert.assertFalse(productList.isEmpty());
+        Assert.assertEquals(4, productList.size());
 
         List<Seller> sellerList = sellerService.getAllSeller();
-        Assert.assertFalse(sellerList.isEmpty());
+        Assert.assertEquals(4, sellerList.size());
     }
 
     /**
@@ -138,7 +141,7 @@ Updated the test case to check if productList is NOT empty at start; DB starts w
 
         Product product = new Product();
         product.setProductName("tonka truck");
-        product.setSellerId("Terry");
+        product.setSellerId(4);
         product.setPrice(0);
         try {
             productService.saveProduct(product);

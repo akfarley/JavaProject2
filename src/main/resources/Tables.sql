@@ -11,7 +11,7 @@ seller_name varchar(255)
 );
 
 CREATE TABLE PRODUCT (
-product_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+product_id BIGINT PRIMARY KEY,
 product_name varchar(255) NOT NULL,
 seller_id BIGINT NOT NULL references SELLER(seller_id),
 price decimal

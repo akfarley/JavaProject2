@@ -13,10 +13,8 @@ import org.example.Service.SellerService;
 import java.util.List;
 
 public class ProductController {
-
     SellerService sellerService;
     ProductService productService;
-
     public ProductController(SellerService sellerService, ProductService productService) {
         this.sellerService = sellerService;
         this.productService = productService;
@@ -76,7 +74,7 @@ public class ProductController {
             context.json(products);
         });
         api.get("product/{productId}", context -> {
-           long productId = Long.parseLong(context.pathParam("productId"));
+           int productId = Integer.parseInt(context.pathParam("productId"));
            try {
                Product product = productService.getProductById(productId);
                context.json(product);
@@ -88,7 +86,7 @@ public class ProductController {
            }
         });
         api.delete("product/{productId}", context -> {
-            long productId = Long.parseLong(context.pathParam("productId"));
+            int productId = Integer.parseInt(context.pathParam("productId"));
             Product product = productService.removeProductByID(productId);
             if (product == null) {
                 context.status(200);
@@ -98,6 +96,19 @@ public class ProductController {
                 context.status(200);
                 Main.log.info("DELETE product successful, 200: " + productId);
             }
+        });
+        api.put("product/{productId}", context -> {
+            try {
+                ObjectMapper om = new ObjectMapper();
+                Product product = om.readValue(context.body(), Product.class);
+                Product updatedProduct = productService.updateProductById(product.productId);
+                context.json(updatedProduct).status(201);
+                Main.log.info("PUT/update to product was successful: " + product);
+                        } catch (ProductException e) {
+                context.result(e.getMessage());
+                context.status(400);
+                Main.log.warn("Product exception was encountered");
+           }
         });
         return api;
     }
