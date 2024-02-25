@@ -32,6 +32,7 @@ public class ProductDAO {
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error while inserting product " +e.getMessage());
         }
     }
 
@@ -52,6 +53,7 @@ public class ProductDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error while getting all products " +e.getMessage());
         }
         return productResults;
     }
@@ -74,6 +76,7 @@ public class ProductDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error while getting product by productID " +e.getMessage());
         }
         return null;
     }
@@ -83,25 +86,26 @@ public class ProductDAO {
             PreparedStatement ps = conn.prepareStatement(
                     "delete from Product where product_id = ?");
             ps.setInt(1, productId);
-            ResultSet rs = ps.executeQuery();
+            ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error while deleting product by productId " +e.getMessage());
         }
         return null;
     }
-    public Product updateProductById(Product product, int productId){
+    public void updateProductById(Product product){
         try {
             PreparedStatement ps = conn.prepareStatement(
                     "update Product SET product_name = ?, price = ?, seller_id = ? where product_id = ?");
             ps.setString(1, product.getProductName());
             ps.setDouble(2, product.getPrice());
             ps.setInt(3, product.getSellerId());
-            ps.setInt(4, productId);
+            ps.setInt(4, product.getProductId());
             ps.executeUpdate();
-            return product;
-        } catch (SQLException e) {
+            } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error while updating product " +e.getMessage());
         }
-        return null;
+
     }
 }

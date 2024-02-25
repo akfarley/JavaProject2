@@ -10,6 +10,7 @@ import java.util.List;
 
 public class SellerService {
     SellerDAO sellerDAO;
+
     public List<Seller> sellerList;
 
     public SellerService(SellerDAO sellerDAO) {
@@ -17,7 +18,7 @@ public class SellerService {
     }
 
     public List<Seller> getAllSeller() {
-        Main.log.warn("Retrieving Seller List" + sellerDAO.getAllSeller());
+        Main.log.info("Retrieving Seller List" + sellerDAO.getAllSeller());
         return sellerDAO.getAllSeller();
     }
 
@@ -35,6 +36,7 @@ public class SellerService {
             Main.log.warn("Seller with name " + sellerName + " already exists");
         } else {
             sellerDAO.insertSeller(seller);
+            Main.log.info("Seller was added: " + seller);
         }
 
     }
@@ -42,7 +44,7 @@ public class SellerService {
     public Seller getSellerById(int sellerId) throws SellerException {
         Seller seller = sellerDAO.getSellerById(sellerId);
         if (seller == null) {
-            throw new SellerException("No seller was found by such id");
+            throw new SellerException("No seller was found with that SellerId: " +sellerId);
         } else {
             return seller;
         }
@@ -51,15 +53,14 @@ public class SellerService {
 
     public Seller getSellerByName(String sellerName) throws SellerException {
         Main.log.info("Attempting to get seller by name: " + sellerName);
-        for (Seller currentSeller : sellerList) {
-            if (currentSeller.getSellerName().isEmpty()) {
-                Main.log.warn("Unable to get seller by name");
-                throw new SellerException("Seller name not found");
-            } else if (currentSeller.sellerName.equalsIgnoreCase(sellerName)) {
+        List<Seller> sellers = sellerDAO.getAllSeller();
+        for (Seller currentSeller : sellers) {
+            if (currentSeller.getSellerName().equalsIgnoreCase(sellerName)) {
                 return currentSeller;
             }
         }
-        throw new SellerException("seller name not found");
+        Main.log.warn("Unable to get seller by name: " +sellerName);
+        throw new SellerException("Seller is not found with sellerName = " +sellerName);
     }
 }
 
